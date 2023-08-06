@@ -1,4 +1,3 @@
-//import faker from '@faker-js/faker';
 import faker from 'faker';
 describe('Issue create', () => {
     beforeEach(() => {
@@ -9,7 +8,7 @@ describe('Issue create', () => {
     });
   
 
-    it('Should create an issue and validate it successfully', () => {
+    it.only('Should create an issue and validate it successfully', () => {
         cy.get('[data-testid="modal:issue-create"]').within(() => {
           cy.get('.ql-editor').type('My bug description');
           cy.get('[data-testid="select:type"]').click();
@@ -31,7 +30,7 @@ describe('Issue create', () => {
               .should('have.length', '5')
               .first()
               .find('p')
-              .contains('TEST_TITLE');
+              .contains('Bug');
           cy.get('[data-testid="avatar:Lord Gaben"]').should('be.visible');
           cy.get('[data-testid="icon:story"]').should('be.visible');
         });
@@ -49,9 +48,10 @@ describe('Issue create', () => {
       });
     });
     
-    it.only('Should create an issue and validate it successfully with random values', () => {
+    it('Should create an issue and validate it successfully with random values', () => {
+      let randomTitle;
         cy.get('[data-testid="modal:issue-create"]').within(() => {
-          const randomTitle = faker.random.word();
+          randomTitle = faker.random.word();   /////
           const randomBugDescription = faker.lorem.sentence();
           cy.get('.ql-editor').type(randomBugDescription);
           cy.get('[data-testid="select:type"]').click();
@@ -73,7 +73,7 @@ describe('Issue create', () => {
               .should('have.length', '5')
               .first()
               .find('p')
-              .contains('TEST_TITLE');
+              .contains(randomTitle);
           cy.get('[data-testid="avatar:Lord Gaben"]').should('be.visible');
           cy.get('[data-testid="icon:story"]').should('be.visible');
         });

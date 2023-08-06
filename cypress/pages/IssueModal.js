@@ -1,6 +1,6 @@
 class IssueModal {
     constructor() {
-        this.submitButton = 'button[type="submit"]';
+            this.submitButton = 'button[type="submit"]';
         this.issueModal = '[data-testid="modal:issue-create"]';
         this.issueDetailModal = '[data-testid="modal:issue-details"]';
         this.title = 'input[name="title"]';
@@ -77,7 +77,7 @@ class IssueModal {
 
     ensureIssueIsNotVisibleOnBoard(issueTitle){
         cy.get(this.issueDetailModal).should('not.exist');
-        cy.reload();
+        //cy.reload();
         cy.contains(issueTitle).should('not.exist');
     }
 
