@@ -27,7 +27,7 @@ describe('Issue comments creating, editing and deleting', () => {
         });
     });
 
-    it.only('Should create,edit and delete comment successfully', () => {
+    it('Should create,edit and delete comment successfully', () => {
         const comment = 'TEST_COMMENT';
         const comment_edited = 'TEST_COMMENT_EDITED';
 
@@ -57,6 +57,7 @@ describe('Issue comments creating, editing and deleting', () => {
             getIssueDetailsModal().contains(comment_edited).should('not.exist');
 
     });
+
 
     it('Should edit a comment successfully', () => {
         const previousComment = 'An old silent pond...';
@@ -99,4 +100,38 @@ describe('Issue comments creating, editing and deleting', () => {
             .find('[data-testid="issue-comment"]')
             .should('not.exist');
     });
+
+    it.only('New automation test', () => {
+    //add comment
+    const comment = 'TEST_COMMENT';
+    const comment_edited = 'TEST_COMMENT_EDITED';
+
+    getIssueDetailsModal().within(() => {
+    cy.contains('Add a comment...')
+        .click();
+    cy.get('textarea[placeholder="Add a comment..."]').type(comment);
+    cy.contains('button', 'Save')
+        .click()
+        .should('not.exist');
+     //assert, that comment is added and visible
+    cy.contains('Add a comment...').should('exist');
+    cy.get('[data-testid="issue-comment"]').should('contain', comment);
+      //edit comment
+    cy.contains('Add a comment...')
+       .click();
+    cy.get('textarea[placeholder="Add a comment..."]').type(comment_edited);
+    cy.contains('button', 'Save')
+       .click()
+       .should('not.exist');
+    //assert that updated comment is visible
+    cy.contains('Add a comment...').should('exist');
+    cy.get('[data-testid="issue-comment"]').should('contain', comment_edited);
+
+
+
+    });
+
+
+
+    })
 });
