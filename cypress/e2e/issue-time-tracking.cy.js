@@ -24,12 +24,12 @@ Cypress.Commands.add('holderNumber', () => {
   describe('Time tracking functionality', () => {
     let taskTitle; 
     beforeEach(() => {
-      // Log in and visit the project board
+      // Should Log in and visit the project board
      // cy.login();
       cy.visit('https://jira.ivorreic.com/project/board/');
       cy.wait(1000);
     
-        // Create a new task
+        // SHould Create a new task
         cy.get('[data-testid="icon:plus"]').first().click();
         cy.get('.ql-editor').type('TEST_DESCRIPTION');
         cy.get('input[name="title"]').should('be.visible').type('NEW_TASK_TITLE');
@@ -45,7 +45,7 @@ Cypress.Commands.add('holderNumber', () => {
   
     it('Time estimation functionality', () => {
   
-      // Open the created task
+      // SHould open the created task
       const taskTitle = 'NEW_TASK_TITLE';
       cy.listIssue().contains(taskTitle, { timeout: 15000 }).click({ force: true });
       cy.wait(5000);
