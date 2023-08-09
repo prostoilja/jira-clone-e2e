@@ -5,6 +5,7 @@ Cypress.Commands.add('holderNumber', () => {
   Cypress.Commands.add('iconClose', () => {
     return cy.get('[data-testid="icon:close"]');
   });
+  
   Cypress.Commands.add('listIssue', () => {
     return cy.get('[data-testid="list-issue"]');
   });
