@@ -65,5 +65,9 @@ describe('Issue create', () => {
       cy.get('[data-testid="form-field:title"]').should('contain', 'This field is required');
     });
   });
+<<<<<<< HEAD
   
 });
+=======
+});
+>>>>>>> 00dfed8746cacccb668c2b53aad51d166902bfb6
